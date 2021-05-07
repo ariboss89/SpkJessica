@@ -49,7 +49,7 @@ public class LoginView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(24, 27, 38));
 
         jPanel2.setBackground(new java.awt.Color(255, 0, 0));
 

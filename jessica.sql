@@ -1,5 +1,5 @@
-﻿# Host: localhost  (Version: 5.5.8)
-# Date: 2020-12-23 21:11:02
+﻿# Host: localhost  (Version: 5.5.5-10.4.17-MariaDB)
+# Date: 2021-05-07 21:05:59
 # Generator: MySQL-Front 5.3  (Build 4.81)
 
 /*!40101 SET NAMES utf8 */;
@@ -86,5 +86,31 @@ CREATE TABLE `tb_perankingan` (
 #
 
 /*!40000 ALTER TABLE `tb_perankingan` DISABLE KEYS */;
-INSERT INTO `tb_perankingan` VALUES ('R003','Clarissa Marissa',1.0000,1.0000,70.0000,6.0000,81.0000,0.3814,0.8716,'Ranking 2'),('R005','Jessica',1.0000,2.0000,85.0000,7.0000,82.0000,0.4376,1.0000,'Ranking 1'),('R006','Ari Ramadhan',2.0000,1.0000,78.0000,6.0000,82.0000,0.2873,0.6565,'Ranking 4'),('R007','M. Fathur Wijayakusumo',2.0000,1.0000,80.0000,7.0000,81.0000,0.2936,0.6709,'Ranking 3');
+INSERT INTO `tb_perankingan` VALUES ('R003','Clarissa Marissa',1.0000,1.0000,70.0000,6.0000,81.0000,0.2100,0.7692,'Ranking 4'),('R005','Jessica',1.0000,2.0000,85.0000,7.0000,82.0000,0.2662,0.9751,'Ranking 2'),('R006','Ari Ramadhan',3.0000,1.0000,78.0000,6.0000,82.0000,0.2730,1.0000,'Ranking 1'),('R007','M. Fathur Wijayakusumo',2.0000,1.0000,80.0000,7.0000,81.0000,0.2507,0.9183,'Ranking 3');
 /*!40000 ALTER TABLE `tb_perankingan` ENABLE KEYS */;
+
+#
+# Structure for table "tb_riwayat"
+#
+
+DROP TABLE IF EXISTS `tb_riwayat`;
+CREATE TABLE `tb_riwayat` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `tanggal` varchar(255) DEFAULT NULL,
+  `alternatif` varchar(255) DEFAULT NULL,
+  `c1` varchar(255) DEFAULT NULL,
+  `c2` varchar(255) DEFAULT NULL,
+  `c3` varchar(255) DEFAULT NULL,
+  `c4` varchar(255) DEFAULT NULL,
+  `c5` varchar(255) DEFAULT NULL,
+  `s` varchar(255) DEFAULT NULL,
+  `k` varchar(255) DEFAULT NULL,
+  `ket` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+
+#
+# Data for table "tb_riwayat"
+#
+
+INSERT INTO `tb_riwayat` VALUES (5,'May-2021','Ari Ramadhan','3.0000','1.0000','78.0000','6.0000','82.0000','0.2730','1.0000','Ranking 1'),(6,'May-2021','Jessica','1.0000','2.0000','85.0000','7.0000','82.0000','0.2662','0.9751','Ranking 2'),(7,'May-2021','M. Fathur Wijayakusumo','2.0000','1.0000','80.0000','7.0000','81.0000','0.2507','0.9183','Ranking 3'),(8,'May-2021','Clarissa Marissa','1.0000','1.0000','70.0000','6.0000','81.0000','0.2100','0.7692','Ranking 4');

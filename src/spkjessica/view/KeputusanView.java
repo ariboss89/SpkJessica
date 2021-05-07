@@ -8,9 +8,12 @@ package spkjessica.view;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import spkjessica.dao.BobotMatriksDao;
@@ -19,6 +22,7 @@ import spkjessica.dao.OptimalisasiDao;
 import spkjessica.dao.PerankinganDao;
 import spkjessica.dao.ProsesDao;
 import spkjessica.dao.ReportDao;
+import spkjessica.dao.RiwayatDao;
 import spkjessica.koneksi.Koneksi;
 import spkjessica.model.tb_model;
 
@@ -37,6 +41,7 @@ public class KeputusanView extends javax.swing.JFrame {
     ProsesDao pd = new ProsesDao();
     PerankinganDao prd = new PerankinganDao();
     ReportDao rd = new ReportDao();
+    RiwayatDao rwd = new RiwayatDao();
     tb_model tbm = new tb_model();
     String Id, nama;
     Double c1, c2, c3, c4, c5;
@@ -645,7 +650,7 @@ public class KeputusanView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Batas Nilai Minimum Kriteria Kepribadian Adalah 70");
             txtC5.setText("");
             txtC5.requestFocus();
-        }else {
+        } else {
             con = new Koneksi();
             try {
                 st = con.connect().createStatement();
@@ -688,7 +693,7 @@ public class KeputusanView extends javax.swing.JFrame {
         if (rowCountTabel1 < 3) {
             JOptionPane.showMessageDialog(null, "Silahkan Masukkan Kembali Data Alternatif Untuk Melanjutkan, Minimal 3 data !!");
         } else {
-            
+
             //Normalisasi
             DefaultTableModel dataModelTabel2 = (DefaultTableModel) jTable2.getModel();
             nd.Normalisasi(rowCountTabel1, nd.SumC1(), nd.SumC2(), nd.SumC3(), nd.SumC4(), nd.SumC5(), jTable1, dataModelTabel2);
@@ -739,6 +744,26 @@ public class KeputusanView extends javax.swing.JFrame {
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM-yyyy");
+        LocalDateTime now = LocalDateTime.now();
+
+        String tanggal = (dtf.format(now));
+        
+        int count = jTable6.getRowCount();
+        for (int i = 0; i < count; i++) {
+            String namaa = jTable6.getValueAt(i, 1).toString();
+            String c11 = jTable6.getValueAt(i, 2).toString();
+            String c22 = jTable6.getValueAt(i, 3).toString();
+            String c33 = jTable6.getValueAt(i, 4).toString();
+            String c44 = jTable6.getValueAt(i, 5).toString();
+            String c55 = jTable6.getValueAt(i, 6).toString();
+            String s = jTable6.getValueAt(i, 7).toString();
+            String k = jTable6.getValueAt(i, 8).toString();
+            String ket = jTable6.getValueAt(i, 9).toString();
+            
+            rwd.Save(tanggal, namaa, c11, c22, c33, c44, c55, s, k, ket);
+        }
+
         rd.CetakHasil();
         dispose();
     }//GEN-LAST:event_btnCetakActionPerformed
@@ -841,12 +866,12 @@ public class KeputusanView extends javax.swing.JFrame {
     private void txtC5KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtC5KeyTyped
         // TODO add your handling code here:
         char karakter = evt.getKeyChar();
-      
+
         if (!(((karakter >= '0') && (karakter <= '9') || (karakter == KeyEvent.VK_BACK_SPACE) || (karakter == KeyEvent.VK_DELETE) || (karakter == KeyEvent.VK_ENTER)))) {
             getToolkit().beep();
             evt.consume();
         }
-        
+
         if (karakter == KeyEvent.VK_SPACE) {
             getToolkit().beep();
             evt.consume();
@@ -860,7 +885,7 @@ public class KeputusanView extends javax.swing.JFrame {
 
     private void txtC5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtC5KeyReleased
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_txtC5KeyReleased
 
     /**

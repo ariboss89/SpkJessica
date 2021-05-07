@@ -7,6 +7,8 @@
 package spkjessica.dao;
 
 import java.io.File;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -38,4 +40,21 @@ public class ReportDao {
             JOptionPane.showMessageDialog(null, e);
         }
     }
+    
+    public void CetakRiwayat(String tanggal){
+        con = new Koneksi();
+
+        try {
+            HashMap parameter = new HashMap();
+            File file = new File("src/spkjessica/view/report/RiwayatPerankingan.jasper");
+            parameter.put("tanggal", tanggal);
+            JasperReport jp = (JasperReport) JRLoader.loadObject(file);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jp, parameter, con.connect());
+            JasperViewer.viewReport(jasperPrint, false);
+            JasperViewer.setDefaultLookAndFeelDecorated(true);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
 }
